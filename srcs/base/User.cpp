@@ -1,6 +1,7 @@
 #include "User.hpp"
 #include <fcntl.h>
 
+/* constructor/destructor */
 User::User(int32_t fd)
     : _fd(fd)
     , _nickname(DEFAULT_INFO_VALUE)
@@ -14,6 +15,8 @@ User::User(int32_t fd)
 
 User::~User() {}
 
+
+/* accessors */
 int32_t         User::get_fd() const            { return (_fd); }
 std::string     User::get_sbuffer() const       { return (_sbuffer); }
 std::string     User::get_prefix() const        { return (_prefix); }
@@ -31,4 +34,5 @@ void            User::set_realname(const std::string &n) { _realname = n; }
 void            User::set_hostname(const std::string &n) { _hostname = n; }
 void            User::set_pass_is_valid(const bool n)    { _pass_is_valid = n; }
 
+/* fetch */
 std::vector<std::string>    *User::fetch_commands()	{ return (&_commands); }

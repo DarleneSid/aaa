@@ -1,10 +1,11 @@
 #include "Channel.hpp"
 
+/* constructor/destructor */
 Channel::Channel(std::string name, int32_t fd)
     : _name(name)
     , _topic("No topic is set")
     , _password("")
-    , _limits(CHANNEL_DEFAULT_LIMIT)
+    , _limits(CHANNEL_DEFAULT_LIMITS)
     , _mflags(0)
     , _is_invite_only(false) {
         _fds.push_back(fd);
@@ -14,7 +15,7 @@ Channel::Channel(std::string name, int32_t fd, std::string password)
     : _name(name)
     , _topic("No topic is set")
     , _password(password)
-    , _limits(CHANNEL_DEFAULT_LIMIT)
+    , _limits(CHANNEL_DEFAULT_LIMITS)
     , _mflags(0)
     , _is_invite_only(false) { 
         _fds.push_back(fd);
@@ -23,6 +24,7 @@ Channel::Channel(std::string name, int32_t fd, std::string password)
     
 Channel::~Channel() {}
 
+/* accessors */
 std::string             Channel::get_name(void) const       { return (_name); }
 std::string             Channel::get_password(void) const   { return (_password); }
 std::string             Channel::get_topic(void) const      { return (_topic); }
