@@ -1,15 +1,3 @@
-/******************************************************************************/
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   command_user.cpp                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: xel <xel@student.42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/23 20:36:53 by xel               #+#    #+#             */
-/*   Updated: 2023/12/16 03:15:57 by xel              ###   ########.fr       */
-/*                                                                            */
-/******************************************************************************/
-
 #include "Server.hpp"
 #include "User.hpp"
 #include "utils.hpp"
@@ -22,7 +10,6 @@ void	Server::_command_user(std::string cmd, int32_t fd) {
     std::string                 username;
     std::string                 hostname;
     uint64_t                    pos = 0;
-
 
     if ((pos = cmd.find(":")) && pos == std::string::npos) {
         reply_arg.push_back("/USER");

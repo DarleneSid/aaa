@@ -1,20 +1,4 @@
-/******************************************************************************/
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Channel.hpp                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: xel <xel@student.42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 21:57:29 by jucheval          #+#    #+#             */
-/*   Updated: 2023/12/06 15:41:41 by xel              ###   ########.fr       */
-/*                                                                            */
-/******************************************************************************/
-
 #pragma once
-
-// ========================================================================= //
-//                                  Header                                   //
-// ========================================================================= //
 
 #include "Server.hpp"
 
@@ -23,23 +7,13 @@
 #include <stdint.h>
 #include <netinet/in.h>
 
+#define CHANNEL_MODE_INVITE_ONLY   2
+#define CHANNEL_MODE_USER_LIMIT    4
+#define CHANNEL_MODE_CHANGE_PASS   8
+#define CHANNEL_MODE_OPERATOR_PRIV 16
+#define CHANNEL_MODE_TOPIC_MANAGE  32
 
-// ========================================================================= //
-//                                   Define                                  //
-// ========================================================================= //
-
-# define CHANNEL_MODE_INVITE_ONLY   1U << 1
-# define CHANNEL_MODE_USER_LIMIT    1U << 2
-# define CHANNEL_MODE_CHANGE_PASS   1U << 3
-# define CHANNEL_MODE_OPERATOR_PRIV 1U << 4
-# define CHANNEL_MODE_TOPIC_MANAGE  1U << 5
-
-# define CHANNEL_DEFAULT_LIMITS     12
-
-
-// ========================================================================= //
-//                                   Class                                   //
-// ========================================================================= //
+# define CHANNEL_DEFAULT_LIMIT     12
 
 class Channel {
     private:
