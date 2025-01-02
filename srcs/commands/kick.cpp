@@ -1,15 +1,3 @@
-/******************************************************************************/
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   command_kick.cpp                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: xel <xel@student.42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/12 06:33:56 by xel               #+#    #+#             */
-/*   Updated: 2023/12/16 02:12:35 by xel              ###   ########.fr       */
-/*                                                                            */
-/******************************************************************************/
-
 #include "Server.hpp"
 #include "User.hpp"
 #include "Channel.hpp"
@@ -98,5 +86,4 @@ void	Server::_command_kick(std::vector<std::string> cmd, int32_t fd) {
         }
     }
 
-    DEBUG_PRINT_ALL_CHANNEL(_channel);
 }

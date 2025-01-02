@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   command_part.cpp                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jucheval <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/23 20:36:53 by xel               #+#    #+#             */
-/*   Updated: 2023/12/18 20:27:52 by jucheval         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Server.hpp"
 #include "User.hpp"
 #include "Channel.hpp"
@@ -91,7 +79,6 @@ void    Server::_send_part_message_by_channel_name(std::string &c_name, std::str
         }
     }
     
-    DEBUG_PRINT_ALL_CHANNEL(_channel);
 }
 
 void    Server::_command_part(std::string cmd, int32_t fd) {

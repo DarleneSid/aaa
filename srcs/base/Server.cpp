@@ -1,36 +1,16 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Server.cpp                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jucheval <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 13:33:13 by jucheval          #+#    #+#             */
-/*   Updated: 2023/12/19 21:28:58 by jucheval         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Server.hpp"
 #include "User.hpp"
 #include "utils.hpp"
 
-/**
- * Constructor for the Server class.
- *
- * This constructor initializes a Server object with the provided port and password.
- * It checks and sets the port and password after validation. It also sets default
- * values for other server properties such as network name, server name, and version.
- * The constructor calculates and stores the server start time.
- */
 Server::Server(const char *port, const char *password) {
     __abort_if_fail__(port);
     __abort_if_fail__(password);
 
     _port = _check_port(port);
     _password = _check_password(password);
-    _networkname = "Porte de la chapelle";
-    _servername = "Crackland";
-    _version = "1";
+    _networkname = "Burger King";
+    _servername = "IRC Server";
+    _version = "1.1";
 
     time_t  now = time(0);
     tm      *ltm = localtime(&now);
@@ -51,10 +31,6 @@ Server::~Server() {
     logger(INFO, "Exit");
 }
 
-
-/**
- * Check and convert a string to a valid port number.
- */
 uint16_t    Server::_check_port(const char *port) const {
     __abort_if_fail__(port);
     
@@ -71,15 +47,12 @@ uint16_t    Server::_check_port(const char *port) const {
     return (nPort);
 }
 
-/**
- * Check and validate a password string.
- */
 std::string Server::_check_password(const char *password) const{
     
     std::string nPass(password);
 
     if (nPass.size() < 6)
-        throw std::invalid_argument("`error`: invalid password");
+        throw std::invalid_argument("`error`: password less than 6 characters");
     
     return (nPass);
 }
@@ -92,7 +65,7 @@ std::string Server::_check_password(const char *password) const{
  * This function performs socket creation, sets options for reuse, 
  * binds to a specified address and port, and sets up for listening.
  */
-void		Server::server_initialisation() {
+void		Server::init() {
 
     int32_t	optsock = 1;
     _sockfd = socket(AF_INET, SOCK_STREAM | SOCK_NONBLOCK, 0);
@@ -258,14 +231,12 @@ uint8_t Server::_get_command_type_from_string(std::string &string) const {
 void	Server::_exec_client_commands(User *user) {
     __abort_if_fail__(user);
 
-    //DEBUG_PRINT_CMD_VEC(user);
     std::vector<std::string> *cmd = user->fetch_commands();
     for (std::vector<std::string>::iterator it = cmd->begin(); it != cmd->end(); it = cmd->erase(it)) {
 
         Command command = Command(*it, user->get_fd());
     
         std::vector<std::string> cmd_splited = split(*it, ' ');
-        //DEBUG_PRINT_CMD_SPLIT_VEC(cmd_splited, user);
 
         if (cmd_splited.size()) {
         
@@ -409,8 +380,6 @@ void	Server::_send_reply(int32_t fd, int32_t code, std::vector<std::string> &rep
         return ;
 }
 
-
-/* accessors */
 std::string Server::get_networkname() const	{ return (_networkname); }
 std::string Server::get_servername() const	{ return (_servername); }
 std::string Server::get_start_time() const	{ return (_start_time); }

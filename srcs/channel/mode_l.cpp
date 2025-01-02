@@ -1,15 +1,3 @@
-/******************************************************************************/
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   mode_user_limit.cpp                                :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: xel <xel@student.42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 10:50:23 by xel               #+#    #+#             */
-/*   Updated: 2023/12/16 02:36:14 by xel              ###   ########.fr       */
-/*                                                                            */
-/******************************************************************************/
-
 #include "Channel.hpp"
 #include "utils.hpp"
 #include <cstdlib>
@@ -34,7 +22,7 @@ void    Server::_mode_user_limit(Channel *channel, std::vector<std::string> &cmd
         logger(INFO, "Mode -l set, user limit mode deleted on this channel");
 
         channel->set_mflags(channel->get_mflags() & ~CHANNEL_MODE_USER_LIMIT);
-        channel->set_limits(CHANNEL_DEFAULT_LIMITS);
+        channel->set_limits(CHANNEL_DEFAULT_LIMIT);
 
         reply_arg.push_back("-l");    
         _send_nmode_to_channel(channel, fd, reply_arg);

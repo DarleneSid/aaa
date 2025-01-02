@@ -1,23 +1,10 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Channel.cpp                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jucheval <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 22:03:06 by jucheval          #+#    #+#             */
-/*   Updated: 2023/12/15 21:01:19 by jucheval         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Channel.hpp"
 
-/* constructor/destructor */
 Channel::Channel(std::string name, int32_t fd)
     : _name(name)
     , _topic("No topic is set")
     , _password("")
-    , _limits(CHANNEL_DEFAULT_LIMITS)
+    , _limits(CHANNEL_DEFAULT_LIMIT)
     , _mflags(0)
     , _is_invite_only(false) {
         _fds.push_back(fd);
@@ -27,7 +14,7 @@ Channel::Channel(std::string name, int32_t fd, std::string password)
     : _name(name)
     , _topic("No topic is set")
     , _password(password)
-    , _limits(CHANNEL_DEFAULT_LIMITS)
+    , _limits(CHANNEL_DEFAULT_LIMIT)
     , _mflags(0)
     , _is_invite_only(false) { 
         _fds.push_back(fd);
@@ -36,7 +23,6 @@ Channel::Channel(std::string name, int32_t fd, std::string password)
     
 Channel::~Channel() {}
 
-/* accessors */
 std::string             Channel::get_name(void) const       { return (_name); }
 std::string             Channel::get_password(void) const   { return (_password); }
 std::string             Channel::get_topic(void) const      { return (_topic); }

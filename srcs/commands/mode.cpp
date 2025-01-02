@@ -1,15 +1,3 @@
-/******************************************************************************/
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   command_mode.cpp                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: xel <xel@student.42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/20 16:55:28 by xel               #+#    #+#             */
-/*   Updated: 2023/12/16 01:19:06 by xel              ###   ########.fr       */
-/*                                                                            */
-/******************************************************************************/
-
 #include "Server.hpp"
 #include "User.hpp"
 #include "Channel.hpp"
@@ -125,7 +113,6 @@ void  Server::_handle_channel_mode(std::vector<std::string> cmd, int32_t fd) {
 		break;
 	}
 
-    DEBUG_PRINT_MODESTR(channel->get_mflags());
 }
 
 void	Server::_command_mode(std::vector<std::string> cmd, int32_t fd) {
